@@ -1,13 +1,14 @@
-# **Forword**
+# **(d)Acumen(t)**
 ---
 
 ## Project Description
 
-Forword is a web-based application designed to analyze word usage in Google Docs. Using Google Apps Scripts, documents you've made are scanned to determine common words. Do be warned that this program can take upwards of half an hour to run if you have a large number of documents.
+(d)Acumen(t) is a web-based application designed to analyze word usage in Google Docs. Using Google Apps Scripts, documents you've made are scanned to determine common words. Do be warned that this program can take upwards of half an hour to run if you have a large number of documents.
 
 ## User Guide
 
-The program is very straightforward to use. The three main inputs from the user are: (Insert image here later)
+The program is very straightforward to use. The three main inputs from the user are:
+<img src="https://cdn.discordapp.com/attachments/765639151847997451/1118241665426137229/image.png" alt="A Diagram" width=700px style="margin: auto;"/>
 1. Number of words to display. This is the number of rows which will be displayed in the table of commonly used words, with each row being a word.
 2. Number of documents to scan and analyze. Due to the nature of querying Google Docs, it takes a long time to go through a large number of documents. If you want to scan through all of your documents, just enter a really large number.
 3. Minimum word length. This is helpful if you don't just want "the", "a", "and" showing up a bunch of times, and want to see which longer and more meaningful words you use often.

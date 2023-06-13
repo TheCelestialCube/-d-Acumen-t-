@@ -1,9 +1,9 @@
-# **(d)Acumen(t)**
+# **Forword**
 ---
 
 ## Project Description
 
-(d)Acumen(t) is a web-based application designed to analyze word usage in Google Docs. Using Google Apps Scripts, documents you've made are scanned to determine common words. Do be warned that this program can take upwards of half an hour to run if you have a large number of documents.
+Forword is a web-based application designed to analyze word usage in Google Docs. Using Google Apps Scripts, documents you've made are scanned to determine common words. Do be warned that this program can take upwards of half an hour to run if you have a large number of documents.
 
 ## User Guide
 

@@ -1,9 +1,8 @@
 # **Forword**
----
 
 ## Project Description
 
-Forword is a web-based application designed to analyze word usage in Google Docs. Using Google Apps Scripts, documents you've made are scanned to determine common words. Do be warned that this program can take upwards of half an hour to run if you have a large number of documents.
+Forword is a web-based application designed to analyze word usage in Google Docs. Using Google Apps Scripts, documents you've made are scanned to determine common words. Do be warned that this program can take upwards of half an hour to run if you have a large number of documents. The functional web version can be found [here](https://script.google.com/macros/s/AKfycbzFTdWEEfhHyvN7PzKAEVHwt3_otxVxjYx-WGaxuhlWgyQ9Sy5HLDz1Z8aAIULoOgG5Nw/exec). A warning may appear declaring the application as unsafe, and this is because the app has not been verified by Google.
 
 ## User Guide
 
@@ -29,6 +28,15 @@ If you're having trouble deploying the project, read the documentation [here](ht
 ### Local Implementation with Clasp
 
 See [this article](https://medium.com/geekculture/how-to-write-google-apps-script-code-locally-in-vs-code-and-deploy-it-with-clasp-9a4273e2d018) for help with setup. Then, follow steps 3 and 4 above.
+
+## Improvements
+
+There are still several features that could prove quite useful, including
+- Scanning of a specific document URL
+- Searching for specific (or a list of) words
+- Filters on date of document so linguistic improvement over time can be tracked
+
+Other than that, the program is quite slow, so it would be nice to make it run much faster. Alas, time is short, and we must continue to move Forword ;)
 
 ## Citations
 

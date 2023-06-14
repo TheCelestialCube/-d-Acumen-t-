@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        border-spacing: 0;
+      }
+
+      td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
+
+      .loader {
+        border: 16px solid #f3f3f3; /* Light grey */
+        border-top: 16px solid #f1c2f5; /* Blue */
+        border-radius: 50%;
+        width: 200px;
+        height: 200px;
+        animation: spin 2s linear infinite;
+        margin: auto;
+        visibility: 'hidden';
+        position: "absolute";
+        margin-top: -185px;
+      }
+
+      img {
+        width: 168px;
+        height: 168px;
+        margin: auto;
+        visibility: 'hidden';
+        position: "absolute";
+        margin-top: -250px;
+      }
+
+      h1 {
+        font-family: Inter;
+        text-align: center;
+        margin-top: 50px;
+        font-size: 130px;
+        font-weight: 2000;
+      }
+
+      h3 {
+        text-align: center;
+        margin-top: -100px;
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+      @keyframes antispin {
+        0% { transform: rotate(360deg); }
+        100% { transform: rotate(0deg); }
+      }
+
+      .row {
+        display: flex;
+        margin-left:-5px;
+        margin-right:-5px;
+      }
+
+      .column {
+        flex: 50%;
+        padding: 5px;
+        margin-top: 80px;
+      }
+
+      body {
+        font-family: 'Inter';
+      }
+
+      .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      label {
+        margin-left: auto;
+        margin-right: auto;
+        type: number;
+      }
+
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+      }
+
+      li a {
+        display: block;
+        color: white;
+        text-color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        float: left;
+      }
+
+      li b {
+        display: block;
+        color: white;
+        text-color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        float: right;
+      }
+
+      li a:hover {
+        background-color: #111;
+      }
+
+      fa-github {
+        color: white;
+      }
+      
+      #submitBtn {
+        margin-left: 300px;
+        margin-top: 20px;
+        background-color: #333;
+        width: 200px;
+        height: 50px;
+        font-size: 30px;
+        text-align: center;
+        color: white;
+      }
+
+      
+      #submitBtn:hover {
+        cursor: pointer;
+      }
+
+      #mainInfo {
+        width: 800px;
+        text-align: left;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <ul>
+      <li><a href="https://github.com/TheCelestialCube/-d-Acumen-t-/blob/main/privacy-policy.md">Privacy Policy</a></li>
+      <li><b>Forword</b></li>
+      <li><a href="https://github.com/TheCelestialCube/Forword" class="fa fa-github"></a></li>
+    </ul>
+    <div id="mainInfo">
+      <h1>Forword</h1>
+      <h3>Tool for Google Docs word usage analysis</h3>
+      
+      <div class="userInput">
+        <label for="numWords"> Enter the number of most common words you want to display: </label>
+        <input
+          min="1"
+          max="1000"
+          id="numWords"
+          name="numWords"
+        />
+        <br>
+        <label for="numDocs"> Enter the number of documents you want to scan. (More documents takes longer) </label>
+        <input
+          min="1"
+          max="1000000"
+          id="numDocs"
+          name="numDocs"
+        />
+        <br>
+        <label for="maxChar">What is the minimum word length you want to search for?</label>
+        <input
+          min="1"
+          max="100"
+          id="maxChar"
+          name="maxChar"
+        />
+        <br>
+        <input 
+            id="submitBtn" 
+            value="Submit" 
+            onclick="sendData()"
+        />
+      </div>
+      <br>
+    </div>
+
+    <div id="loader"><img src="https://cdn.discordapp.com/attachments/765639151847997451/1116788352075706378/PFP_3_-removebg-preview.png" alt="someimage" id="arisu" class="center"><div class="loader"></div></div>
+
+    <div class="row" id="tables">
+      <div class="column">
+        <table id="wordTable">
+          <thead>
+            <tr>
+              <th>Word</th>
+              <th>Number of Occurrences</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="column">
+        <table id="docsTable">
+          <thead>
+            <tr>
+              <th>Document Name</th>
+              <th>Number of Words</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <table>
+
+    </table>
+
+    <script>
+      // Define html elements
+      document.getElementById("loader").style.visibility = "hidden";
+      var wordTable = document.getElementById("wordTable");
+      var docsTable = document.getElementById("docsTable");
+      var tables = document.getElementById("tables")
+      var wordtableRef = wordTable.getElementsByTagName('tbody')[0];
+      var doctableRef = docsTable.getElementsByTagName("tbody")[0];
+      var main = document.getElementById("mainInfo");
+      let wordcount = document.querySelector('#numWords').value;
+      let doccount = document.querySelector('#numDocs').value;
+      let charCount = document.querySelector('#maxChar').value;
+      let spinner = document.querySelector('#loader');
+      let submitButton = document.querySelector('#submitBtn');
+
+      tables.style.visibility = "hidden";
+
+      function onFailure(error){
+        // Runs when an error has occurred
+        let warning = `<span style="color:red">${error}</span>`;
+        spinner.style.visibility = "hidden";
+        main.style.visibility = "visible"; 
+      };
+        
+      function onSuccess(element){
+        // This function runs if the data is returned successfully
+        used = element[1];
+        words = element[0];
+        wordtableRef.innerHTML = '';
+        doctableRef.innerHTML = '';
+
+        // Enter the results into tables for display
+        for (var i=0; i < words.length; i++){
+          // Make a new row
+          var newRow = wordtableRef.insertRow();
+          var cell1 = newRow.insertCell();
+          var cell2 = newRow.insertCell();
+          cell1.innerHTML = words[i][0];
+          cell2.innerHTML = words[i][1];
+        }
+        
+        for (var i=0; i < used.length; i++){
+          // Make a new row
+          var newRow = docsTable.getElementsByTagName("tbody")[0].insertRow();
+          var cell1 = newRow.insertCell();
+          var cell2 = newRow.insertCell();
+          cell1.innerHTML = used[i][0];
+          cell2.innerHTML = used[i][1];
+        }
+
+        // Restore visibility of html elements
+        spinner.style.visibility = "hidden";
+        main.style.visibility = "visible";
+        tables.style.visibility = "visible";
+      };
+
+      function sendData() {
+        wordcount = document.querySelector('#numWords').value;
+        doccount = document.querySelector('#numDocs').value;
+        charCount = document.querySelector('#maxChar').value;
+        // Hide html elements
+        tables.style.visibility = "hidden";
+        main.style.visibility = "hidden";
+        spinner.style.visibility = "visible";
+        
+        // Query the server
+        google.script.run.withFailureHandler(onFailure).withSuccessHandler(onSuccess).getResultFromWebApp(wordcount, doccount, charCount);
+      };
+    </script>
+</html>

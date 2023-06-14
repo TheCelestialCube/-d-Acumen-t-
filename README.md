@@ -12,6 +12,8 @@ The program is very straightforward to use. The three main inputs from the user 
 2. Number of documents to scan and analyze. Due to the nature of querying Google Docs, it takes a long time to go through a large number of documents. If you want to scan through all of your documents, just enter a really large number.
 3. Minimum word length. This is helpful if you don't just want "the", "a", "and" showing up a bunch of times, and want to see which longer and more meaningful words you use often.
 
+After entering the desired inputs, just press "Submit" and patiently enjoy the loading animation while the data is collected.
+
 ## Implementation
 
 This project is licensed under the [MIT License](https://en.wikipedia.org/wiki/MIT_License), which allows both commercial and private use, as well as modification and distribution. If you wish to implement this into your own project, consider the following options:
